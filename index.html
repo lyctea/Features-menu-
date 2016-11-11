@@ -4,6 +4,32 @@
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 	<title>特色菜单</title>
 	<link rel="stylesheet" type="text/css" href="index.css">
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		$('#menuList').on('click','a',function(){
+			var curIndex = $(this).index(),         //获取一级菜单序列0-3
+			mlValue = '-' + curIndex*100 + '%';   //-3*100%   -300%
+			if ($('#expandZone').hasClass('active')) {   //如果二级菜单已经展开
+				$('expandZone.expdiv').animate({marginLeft:mlValue});  //则让expdiv
+			}else {
+				$('#expandZone.expdiv').css({marginLeft:mlValue});
+		     	$('#expandZone').animate({height:'130px'}).addClass('active');	
+			}
+
+			$('#expandZone #closeBtn').on('click',function(){
+				$('#expandZone').animate({height:'0px'},function(){
+					$(this).removeClass('active');
+				});
+				return false;
+			})
+
+		 })  // #menuList').on('click','a'
+	})
+
+
+
+	</script>
 </head>
 <body>
 	<div id="menuList" class="navlist">
